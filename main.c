@@ -10,6 +10,12 @@ struct obj {
 
 struct obj personagem;
 
+// Mundo inicial
+int xBegin = -1280;
+int xEnd = 1280;
+int yBegin = -720;
+int yEnd = 720;
+
 // Teclas [W, A, S, D] desligadas
 int moveKeys[4] = {0,0,0,0}; 
 
@@ -27,6 +33,61 @@ void desenhaCena() {
             glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
         glEnd();
     glPopMatrix();
+    
+    glColor3f(1, 0, 0);
+    
+    glPushMatrix();
+        glTranslatef(0, -360, 0);
+        glBegin(GL_TRIANGLE_FAN);
+            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
+            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
+        glEnd();
+        glTranslatef(-200, -720, 0);
+        glBegin(GL_TRIANGLE_FAN);
+            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
+            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
+        glEnd();
+        glTranslatef(200, -1080, 0);
+        glBegin(GL_TRIANGLE_FAN);
+            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
+            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
+        glEnd();
+        glTranslatef(200, -1440, 0);
+        glBegin(GL_TRIANGLE_FAN);
+            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
+            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
+        glEnd();
+        glTranslatef(-200, -1800, 0);
+        glBegin(GL_TRIANGLE_FAN);
+            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
+            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
+        glEnd();
+        glTranslatef(-200, -2160, 0);
+        glBegin(GL_TRIANGLE_FAN);
+            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
+            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
+        glEnd();
+        glTranslatef(200, -2520, 0);
+        glBegin(GL_TRIANGLE_FAN);
+            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
+            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
+            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
+        glEnd();
+    glPopMatrix();
+
 
     glutSwapBuffers();
 }
@@ -44,7 +105,7 @@ void redimensiona(int w, int h) {
     glViewport(0, 0, w, h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-1280, 1280, -720, 720, -1, 1);
+    glOrtho(xBegin, xEnd, yBegin, yEnd, -1, 1);
     glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
@@ -133,7 +194,7 @@ void atualiza() {
 			switch(i) {
 				// Tecla W
 				case 0:
-					personagem.y += 15;
+					personagem.y += 20;
 					break;
 				// Tecla A
 				case 1:
@@ -152,6 +213,16 @@ void atualiza() {
 			}
 		}
 	}
+
+    yBegin-=10;
+    yEnd-=10;
+    personagem.y -= 10;
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(xBegin, xEnd, yBegin, yEnd, -1, 1);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    
     glutPostRedisplay();
     glutTimerFunc(33, atualiza, 0);
 } 
