@@ -11,7 +11,9 @@
  
 void inicializa() {
     glClearColor(.1, .2, .75, 0);
+    srand(time(0));
     personagem_init();
+    enemies_init();
 }
 
 void desenhaCena() {
@@ -23,7 +25,15 @@ void desenhaCena() {
         glTranslatef(personagem.x, personagem.y, 0);
         desenhaCorpo(personagem.larg,personagem.alt);
     glPopMatrix();
-    
+
+    glColor3f(1, 0, 0);
+    for (int i = 0; i < enemies_num; ++i) {
+        glPushMatrix();
+            glTranslatef(enemies[i].x, enemies[i].y, 0);
+            desenhaCorpo(enemies[i].larg,enemies[i].alt);
+        glPopMatrix();
+    }
+
     glutSwapBuffers();
 }
 
@@ -120,29 +130,37 @@ void atualiza() {
 			switch(i) {
 				// Tecla W
 				case 0:
-					personagem.y += 20;
+					personagem.y += (personagem.velo + 8);
 					break;
 				// Tecla A
 				case 1:
-					personagem.x -= 15;
+					personagem.x -= personagem.velo;
 					break;
 				// Tecla S
 				case 2:
-					personagem.y -= 15;
+					personagem.y -= personagem.velo;
 					break;
 				// Tecla D
 				case 3:
-					personagem.x += 15;
+					personagem.x += personagem.velo;
 					break;
 				default:
             		break;
 			}
 		}
 	}
-    yBegin-=10;
-    yEnd-=10;
-    personagem.y-= 12;
-    limiteTela(personagem.x,personagem.y,personagem.larg/2,personagem.alt/2);
+
+    for (int i = 0; i < enemies_num; ++i) {
+        enemies[i].x += enemies[i].velo;
+        enemies[i].y -= 8;
+        limiteX(enemies[i].x, enemies[i].larg/2, 1, i);
+    }
+
+    yBegin -= 15;
+    yEnd -= 15;
+    personagem.y -= 18;
+    limiteX(personagem.x, personagem.larg/2, 0, 0);
+    limiteY(personagem.y, personagem.alt/2);
     
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
