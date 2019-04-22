@@ -8,12 +8,12 @@ void personagem_init() {
 
 void enemies_init() {
 	for (int i = 0; i < enemies_num; ++i) {
-		enemies[i].x = xBegin/2 + rand() % xEnd;
+        enemies[i].x = xBegin/2 + rand() % xEnd;
 		enemies[i].y = next_enemy;
 		enemies[i].alt = 80;
 		enemies[i].larg = 80;
-		enemies[i].velo = 15 + rand() % 25;
-		next_enemy = next_enemy - (350 + rand() % 850);
+		enemies[i].velo = 15 + rand() % 26;
+		next_enemy -= (350 + rand() % 850);
 	}
 }
 
