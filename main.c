@@ -8,24 +8,11 @@
 
 #include "global.h"
 #include "global.c"
-
-<<<<<<< HEAD
-struct obj personagem;
-
-// Mundo inicial
-int xBegin = -1280;
-int xEnd = 1280;
-int yBegin = -720;
-int yEnd = 720;
-
-// Teclas [W, A, S, D] desligadas
-int moveKeys[4] = {0,0,0,0}; 
-=======
+ 
 void inicializa() {
     glClearColor(.1, .2, .75, 0);
     personagem_init();
 }
->>>>>>> master
 
 void desenhaCena() {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -37,61 +24,6 @@ void desenhaCena() {
         desenhaCorpo(personagem.larg,personagem.alt);
     glPopMatrix();
     
-    glColor3f(1, 0, 0);
-    
-    glPushMatrix();
-        glTranslatef(0, -360, 0);
-        glBegin(GL_TRIANGLE_FAN);
-            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
-            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
-        glEnd();
-        glTranslatef(-200, -720, 0);
-        glBegin(GL_TRIANGLE_FAN);
-            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
-            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
-        glEnd();
-        glTranslatef(200, -1080, 0);
-        glBegin(GL_TRIANGLE_FAN);
-            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
-            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
-        glEnd();
-        glTranslatef(200, -1440, 0);
-        glBegin(GL_TRIANGLE_FAN);
-            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
-            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
-        glEnd();
-        glTranslatef(-200, -1800, 0);
-        glBegin(GL_TRIANGLE_FAN);
-            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
-            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
-        glEnd();
-        glTranslatef(-200, -2160, 0);
-        glBegin(GL_TRIANGLE_FAN);
-            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
-            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
-        glEnd();
-        glTranslatef(200, -2520, 0);
-        glBegin(GL_TRIANGLE_FAN);
-            glVertex3f(-personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2, -personagem.alt/2, 0);
-            glVertex3f( personagem.larg/2,  personagem.alt/2, 0);
-            glVertex3f(-personagem.larg/2,  personagem.alt/2, 0);
-        glEnd();
-    glPopMatrix();
-
-
     glutSwapBuffers();
 }
 
@@ -189,7 +121,6 @@ void atualiza() {
 				// Tecla W
 				case 0:
 					personagem.y += 20;
-<<<<<<< HEAD
 					break;
 				// Tecla A
 				case 1:
@@ -208,35 +139,11 @@ void atualiza() {
 			}
 		}
 	}
-
-    yBegin-=10;
-    yEnd-=10;
-    personagem.y -= 10;
-=======
-                    break;
-                // Tecla A
-                case 1:
-                    personagem.x -= 15;
-                    break;
-                // Tecla S
-                case 2:
-                    personagem.y -= 15;
-                    break;
-                // Tecla D
-                case 3:
-                    personagem.x += 15;
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
     yBegin-=10;
     yEnd-=10;
     personagem.y-= 12;
     limiteTela(personagem.x,personagem.y,personagem.larg/2,personagem.alt/2);
     
->>>>>>> master
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(xBegin, xEnd, yBegin, yEnd, -1, 1);
