@@ -3,16 +3,18 @@
 #include <SOIL/SOIL.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 #include <time.h>
 
 #include "global.h"
 #include "global.c"
 #include "desenha.c"
-#include "teclado.c"
 #include "colisao.h"
 #include "colisao.c"
 #include "atualiza.c"
+#include "reset.c"
+#include "teclado.c"
 
 void inicializa() {
     glClearColor(.1, .2, .75, 0);

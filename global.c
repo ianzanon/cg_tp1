@@ -1,3 +1,12 @@
+void escreve(void* fonte, char* texto, float x, float y, float z) {
+    glRasterPos3f(x, y, z);
+    glPushMatrix();
+        for (int i = 0; i < strlen(texto); i++) {
+            glutBitmapCharacter(fonte, texto[i]);
+        }
+    glPopMatrix();
+}
+
 void personagem_init() {
 	personagem.x = 0;
 	personagem.y = 0;
@@ -12,8 +21,19 @@ void enemies_init() {
 		enemies[i].y = next_enemy;
 		enemies[i].alt = 80;
 		enemies[i].larg = 80;
-		enemies[i].velo = 15 + rand() % 26;
-		next_enemy -= (350 + rand() % 850);
+        // Quanto mais fundo, mais rápidos são os inimigos
+        if (i < 10) {
+            enemies[i].velo = 20 + rand() % 31;
+        } else if (i < 20) {
+            enemies[i].velo = 35 + rand() % 46;
+        } else if (i < 40) {
+            enemies[i].velo = 50 + rand() % 61;
+        } else if (i < 60) {
+            enemies[i].velo = 65 + rand() % 76;
+        } else {
+            enemies[i].velo = 75 + rand() % 86;
+        }
+		next_enemy -= (250 + rand() % 450);
 	}
 }
 
@@ -24,7 +44,7 @@ void moedas_init() {
         moedas[i].alt = 50;
         moedas[i].larg = 50;
         moedas[i].velo = 8;
-        next_coin -= (350 + rand() % 850);
+        next_coin -= (250 + rand() % 450);
     }
 }
 

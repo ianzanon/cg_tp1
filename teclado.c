@@ -2,17 +2,34 @@ void teclado(unsigned char key, int x, int y) {
     switch(key) {
         // Tecla ESC
         case 27:
-        	//msg confirmação
-            exit(0);
+        	pause = 1;
+        	if (last_char == ' ') {
+            	exit(0);
+        	}
+        	last_char = ' ';
+        	glutPostRedisplay();
             break;
         case 'r':
         case 'R':
-            //msg confirmação
-        	//reinicia o jogo
+        	pause = 1;
+            if (last_char == 'r') {
+            	reset();    
+            } else {
+            	last_char = 'r';
+            	glutPostRedisplay();
+            }
             break;
         case 'p':
         case 'P':
-            //pausa o jogo
+            if (pause) {
+            	pause = 0;
+                last_char = 'a';
+                atualiza();
+            } else {
+                pause = 1;
+                last_char = 'p';
+            }
+            glutPostRedisplay();
             break;
         case 'W':
         case 'w':
