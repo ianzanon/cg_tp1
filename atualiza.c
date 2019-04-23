@@ -29,29 +29,38 @@ void atualiza() {
 	// Movimento dos inimigos
 	for (int i = 0; i < enemies_num; ++i) {
 	    enemies[i].x += enemies[i].velo;
-	    enemies[i].y -= 8;
+	    // Reduz a velocidade durante a rolagem
+	    enemies[i].y += control_speed;
 	    limiteX(enemies[i].x, enemies[i].larg/2, 1, i);
 	}
 
+	// Reduz a velocidade durante a rolagem
 	for (int i = 0; i < moedas_num; ++i) {
-	    moedas[i].y -= moedas[i].velo;
+	    moedas[i].y += control_speed;
 	}
 
-	// Rolagem do mapa 15 por segundo
-	yBegin -= 15;
-	yEnd -= 15;
-	depth++;
-	// Personagem cai numa velocidade de 3 por segundo
-	personagem.y -= 18;
+	if (personagem.y + personagem.alt < moedas[moedas_num-1].y) {
+		descendo = 0;
+		reduz_velo();
+		control_speed = 8;
+	} 
+
+	if (!descendo) {
+		subir();
+	} else {
+		descer();
+	}
 
 	limiteX(personagem.x, personagem.larg/2, 0, 0);
 	limiteY(personagem.y, personagem.alt/2);
 
 	colidir(enemies,colisao_enemy);
 	if (colisao_enemy[0]) {
-	    enemies[colisao_enemy[1]].velo = 0;
 	    // Para a condição
 	    colisao_enemy[0] = 0;
+	    descendo = 0;
+		reduz_velo();
+		control_speed = 8;
 	}
 
 	colidir(moedas,colisao_moeda);

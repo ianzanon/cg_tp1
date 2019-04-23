@@ -37,6 +37,8 @@ void desenhaCena() {
         case 'p':
             escreve(GLUT_BITMAP_TIMES_ROMAN_24, "P para resumir", xBegin + 35, yBegin + 35, 1);
             break;
+        default:
+            break;
     }
 
     glutSwapBuffers();

@@ -5,11 +5,13 @@ void reset() {
     xEnd = 1280;
     yBegin = -720;
     yEnd = 720;
+    control_speed = -8;
     next_enemy = -500;
-	next_coin = -500;
-	moedas_coletadas = 0;
-	pause = 0;
-	last_char = 'a';
+    next_coin = -500;
+    moedas_coletadas = 0;
+    pause = 0;
+    last_char = 'a';
+    descendo = 1;
     personagem_init();
     enemies_init();
     moedas_init();

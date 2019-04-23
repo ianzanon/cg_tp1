@@ -43,7 +43,7 @@ void moedas_init() {
         moedas[i].y = next_coin;
         moedas[i].alt = 50;
         moedas[i].larg = 50;
-        moedas[i].velo = 8;
+        moedas[i].velo = 0;
         next_coin -= (250 + rand() % 450);
     }
 }
@@ -55,6 +55,39 @@ void desenhaCorpo(float largura, float altura) {
         glVertex3f( largura/2,  altura/2, 0);
         glVertex3f(-largura/2,  altura/2, 0);
     glEnd();
+}
+
+void descer() {
+    // Rolagem do mapa 15 por segundo
+    yBegin -= 15;
+    yEnd -= 15;
+    // Personagem cai numa velocidade de 3 por segundo
+    personagem.y -= 18;
+}
+
+void subir() {
+    // Sobe até a tela esconder o primeiro inimigo
+    if (personagem.y < enemies[0].y + 1440) {
+        // Rolagem do mapa 30 por segundo
+        yBegin += 30;
+        yEnd += 30;
+        // Personagem sobe numa velocidade de 5 por segundo
+        personagem.y += 40;
+        // Após o personagem ultrapassar o primeiro inimigo em 500
+        if(personagem.y > enemies[0].y && personagem.y - enemies[0].y > 500) {
+            pause = 1;
+        }
+    }
+}
+
+void reduz_velo() {
+    for (int i = 0; i < enemies_num; ++i) {
+        if(enemies[i].velo > 0) {
+            enemies[i].velo = 15;
+        } else {
+            enemies[i].velo = -15;
+        }
+    }
 }
 
 void limiteX(int x, int largura, int enemy, int index) {

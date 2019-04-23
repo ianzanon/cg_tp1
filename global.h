@@ -1,9 +1,10 @@
+// Reduz efeito da velocidade durante a rolagem
+int control_speed = -8;
+
 // Primeiro inimigo após 500 de profundidade
 int next_enemy = -500;
 // Número de inimigos
 int enemies_num = 100;
-// Profundidade
-int depth = 0;
 
 // Primeira moeda após 500 de profundidade
 int next_coin = -500;
@@ -24,6 +25,9 @@ int moveKeys[4] = {0,0,0,0};
 int pause = 1;
 // Ultimo char digitado
 char last_char;
+
+// Começa descendo
+int descendo = 1;
 
 
 // Estrutura para criar objetos animados
