@@ -16,5 +16,13 @@ void desenhaCena() {
         glPopMatrix();
     }
 
+    glColor3f(0, 1, 0);
+    for (int i = 0; i < moedas_num; ++i) {
+        glPushMatrix();
+            glTranslatef(moedas[i].x, moedas[i].y, 0);
+            desenhaCorpo(moedas[i].larg,moedas[i].alt);
+        glPopMatrix();
+    }
+
     glutSwapBuffers();
 }

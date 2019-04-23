@@ -33,6 +33,10 @@ void atualiza() {
         limiteX(enemies[i].x, enemies[i].larg/2, 1, i);
     }
 
+    for (int i = 0; i < moedas_num; ++i) {
+        moedas[i].y -= moedas[i].velo;
+    }
+
     // Rolagem do mapa 15 por segundo
     yBegin -= 15;
     yEnd -= 15;
@@ -43,10 +47,23 @@ void atualiza() {
     limiteY(personagem.y, personagem.alt/2);
 
     
-    colidir(enemies,colisao);
-    if (colisao[0]) {
-        enemies[colisao[1]].velo = 0;
-        enemies[colisao[1]].velo = 0;
+    
+    colidir(enemies,colisao_enemy);
+    if (colisao_enemy[0]) {
+        enemies[colisao_enemy[1]].velo = 0;
+        // Para a condição
+        colisao_enemy[0] = 0;
+    }
+
+    colidir(moedas,colisao_moeda);
+    if (colisao_moeda[0]) {
+    	// Moeda "some", zera largura e altura e é redesenhada fora da tela
+    	moedas[colisao_moeda[1]].x = xEnd+1;
+        moedas[colisao_moeda[1]].alt = 0;
+        moedas[colisao_moeda[1]].larg = 0;
+        moedas_coletadas++;
+        // Para a condição
+        colisao_moeda[0] = 0;
     }
 
     glMatrixMode(GL_PROJECTION);

@@ -19,6 +19,7 @@ void inicializa() {
     srand(time(0));
     personagem_init();
     enemies_init();
+    moedas_init();
 }
 
 void redimensiona(int w, int h) {
