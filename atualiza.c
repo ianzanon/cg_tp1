@@ -56,6 +56,11 @@ void atualiza() {
 
 	colidir(enemies,colisao_enemy);
 	if (colisao_enemy[0]) {
+		enemies[colisao_enemy[1]].x = xEnd+1;
+	    enemies[colisao_enemy[1]].alt = 0;
+	    enemies[colisao_enemy[1]].larg = 0;
+	    moedas_coletadas--;
+	    atualiza_score();
 	    // Para a condição
 	    colisao_enemy[0] = 0;
 	    descendo = 0;
@@ -70,7 +75,7 @@ void atualiza() {
 	    moedas[colisao_moeda[1]].alt = 0;
 	    moedas[colisao_moeda[1]].larg = 0;
 	    moedas_coletadas++;
-	    // Para a condição
+	    atualiza_score();
 	    colisao_moeda[0] = 0;
 	}
 

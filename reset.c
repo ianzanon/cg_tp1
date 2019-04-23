@@ -12,6 +12,7 @@ void reset() {
     pause = 0;
     last_char = 'a';
     descendo = 1;
+    atualiza_score();
     personagem_init();
     enemies_init();
     moedas_init();

@@ -9,6 +9,7 @@
 
 #include "global.h"
 #include "global.c"
+#include "hud.c"
 #include "desenha.c"
 #include "colisao.h"
 #include "colisao.c"
@@ -22,6 +23,7 @@ void inicializa() {
     personagem_init();
     enemies_init();
     moedas_init();
+    atualiza_score();
 }
 
 void redimensiona(int w, int h) {

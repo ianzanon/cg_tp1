@@ -57,6 +57,10 @@ void desenhaCorpo(float largura, float altura) {
     glEnd();
 }
 
+void atualiza_score() {
+    sprintf(score, "Moedas: %d", moedas_coletadas);
+}
+
 void descer() {
     // Rolagem do mapa 15 por segundo
     yBegin -= 15;
@@ -74,7 +78,7 @@ void subir() {
         // Personagem sobe numa velocidade de 5 por segundo
         personagem.y += 40;
         // Após o personagem ultrapassar o primeiro inimigo em 500
-        if(personagem.y > enemies[0].y && personagem.y - enemies[0].y > 500) {
+        if(personagem.y > enemies[0].y && personagem.y - enemies[0].y > 1000) {
             pause = 1;
         }
     }

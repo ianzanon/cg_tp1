@@ -11,6 +11,7 @@ int next_coin = -500;
 // Número de moedas
 int moedas_num = 100;
 int moedas_coletadas = 0;
+char score[20];
 
 // Mundo inicial
 int xBegin = -1280;
