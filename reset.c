@@ -1,6 +1,8 @@
 void reset() {
     glClearColor(.1, .2, .75, 0);
     srand(time(0));
+    inicio = 0;
+    telas = 0;
     xBegin = -1280;
     xEnd = 1280;
     yBegin = -720;
@@ -9,7 +11,7 @@ void reset() {
     next_enemy = -500;
     next_coin = -500;
     moedas_coletadas = 0;
-    pause = 0;
+    pause = 1;
     last_char = 'a';
     descendo = 1;
     atualiza_score();

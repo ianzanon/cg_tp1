@@ -10,9 +10,12 @@
 #include "global.h"
 #include "global.c"
 #include "hud.c"
+#include "carrega_textura.h"
+#include "carrega_textura.c"
 #include "desenha.c"
 #include "colisao.h"
 #include "colisao.c"
+#include "rolagem.c"
 #include "atualiza.c"
 #include "reset.c"
 #include "teclado.c"
@@ -24,6 +27,9 @@ void inicializa() {
     enemies_init();
     moedas_init();
     atualiza_score();
+    carrega_textura();
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void redimensiona(int w, int h) {
@@ -41,7 +47,7 @@ int main(int argc, char **argv) {
     glutInitWindowSize(1280, 720);
     glutInitWindowPosition(0, 0);
 
-    glutCreateWindow("TP1 - nome do jogo");
+    glutCreateWindow("TP1 - Computação Gráfica");
 
     // Callbacks
     glutDisplayFunc(desenhaCena);

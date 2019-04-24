@@ -9,6 +9,13 @@ void teclado(unsigned char key, int x, int y) {
         	last_char = ' ';
         	glutPostRedisplay();
             break;
+        case 13:
+            inicio = 1;
+            telas = 1;
+            pause = 0;
+            atualiza();
+            glutPostRedisplay();
+            break;
         case 'r':
         case 'R':
         	pause = 1;

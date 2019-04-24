@@ -1,3 +1,7 @@
+// Tela inicial
+int inicio = 0;
+int telas = 0;
+
 // Reduz efeito da velocidade durante a rolagem
 int control_speed = -8;
 
@@ -33,7 +37,7 @@ int descendo = 1;
 
 // Estrutura para criar objetos animados
 typedef struct object {
-    int x, y, alt, larg, velo;
+    int x, y, alt, larg, velo, direcao;
 } Object;
 
 Object personagem;
